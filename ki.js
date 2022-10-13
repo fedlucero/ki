@@ -3,13 +3,13 @@ var ctx = canvas.getContext('2d');
 
 
 function random(min, max) {
-  return Math.floor((fxrand() * (max - min + 1)) + min);
+  return Math.floor((Math.random() * (max - min + 1)) + min);
 }
 function random2(min, max) {
-  return (fxrand() * (max - min + 1)) + min;
+  return (Math.random() * (max - min + 1)) + min;
 }
 function randomFromList(items){
-  return items[Math.floor(fxrand()*items.length)];
+  return items[Math.floor(Math.random()*items.length)];
   }
 
 
@@ -68,19 +68,28 @@ ctx.strokeStyle = "#000";
 ctx.stroke();
 drawTree(centerX,900,85, -Math.PI / 2, 17,8);
 
+function generate() {
+  ctx.fillStyle = "#fff"
+  ctx.fillRect(0,0,canvas.width,canvas.height)
+
+  ctx.beginPath();
+  ctx.fillStyle = colorCirculos
+  ctx.arc(d, e,a,0 , 2* Math.PI)
+  ctx.fill()
+  ctx.strokeStyle = colorCirculos;
+
+  ctx.beginPath()
+  ctx.rect(b,c,f,f)
+  ctx.lineWidth=2;
+  ctx.strokeStyle = "#000";
+  ctx.stroke();
+  drawTree(centerX,900,85, -Math.PI / 2, 17,8);
 
 
-
-fxpreview();
-
-
-
-
+}
 
 function drawTree(centerX, inY, length, angle, depth, branchWidth) {
 
-  
- 
   var newLength, newAngle, newDepth, maxBranch = 2,
       endX, endY, maxAngle = 2 * Math.PI / 5, subBranches;
 
@@ -109,8 +118,8 @@ function drawTree(centerX, inY, length, angle, depth, branchWidth) {
   if(!newDepth) {
     return;
   }
-  subBranches = (fxrand() * (maxBranch -q)) +q;
-  if(fxrand()<0.3){
+  subBranches = (Math.random() * (maxBranch -q)) +q;
+  if(Math.random()<0.3){
   branchWidth *=0.6 ;}
   else{
     branchWidth *=0.7;
@@ -118,8 +127,8 @@ function drawTree(centerX, inY, length, angle, depth, branchWidth) {
   //0.6
 
   for (var i = 0; i < subBranches; i++) {
-    newAngle = angle + fxrand() * maxAngle - maxAngle * 0.5;
-    newLength = length * (0.7 + fxrand() * 0.3);
+    newAngle = angle + Math.random() * maxAngle - maxAngle * 0.5;
+    newLength = length * (0.7 + Math.random() * 0.3);
     
     drawTree(endX, endY, newLength, newAngle, newDepth, branchWidth);
   }
